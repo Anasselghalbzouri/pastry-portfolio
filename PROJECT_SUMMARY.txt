@@ -1,0 +1,183 @@
+================================================================================
+  PASTRY PORTFOLIO — PROJECT SUMMARY
+  Reda El Ghalbzouri | Pastry Trainee
+================================================================================
+
+WHAT WAS BUILT
+--------------------------------------------------------------------------------
+A high-end single-page portfolio website designed for a pastry trainee
+seeking stage opportunities in Michelin-level kitchens.
+
+The design follows a minimalist luxury aesthetic — strong negative space,
+premium typography, black and white base with gold accent (#C6A36D) —
+inspired by Michelin-level branding.
+
+
+TECH STACK
+--------------------------------------------------------------------------------
+  - Next.js 14         (App Router, SSR, file-based routing)
+  - React 18           (component model, hooks)
+  - TypeScript         (full type safety)
+  - TailwindCSS        (utility-first styling, 8px spacing system)
+  - Framer Motion      (scroll animations, fade/translate transitions)
+  - Three.js           (3D canvas in the hero section)
+  - @react-three/fiber (React renderer for Three.js)
+  - React Hook Form    (contact form)
+  - Zod                (form validation)
+  - Lucide React       (icons)
+  - clsx + tw-merge    (conditional class utilities)
+
+
+PROJECT STRUCTURE
+--------------------------------------------------------------------------------
+  pastry-portfolio/
+  ├── app/
+  │   ├── layout.tsx          — Root layout, metadata, font imports
+  │   ├── page.tsx            — Main page, wires all sections together
+  │   └── globals.css         — Google Fonts, Tailwind base, scrollbar style
+  ├── components/
+  │   ├── Navbar.tsx          — Fixed, scroll-aware navigation
+  │   ├── Hero.tsx            — Split hero layout with CTA
+  │   ├── HeroCanvas.tsx      — Three.js 3D scene (particles + rings)
+  │   ├── SelectedWork.tsx    — 3-project card grid
+  │   ├── Techniques.tsx      — 6-technique icon row
+  │   ├── About.tsx           — Bio section with portrait photo
+  │   ├── Contact.tsx         — Dark contact section with validated form
+  │   └── Footer.tsx          — Social links and back-to-top
+  ├── lib/
+  │   └── utils.ts            — cn() utility (clsx + tailwind-merge)
+  ├── public/
+  │   └── images/             — All real photos (your own images)
+  │       ├── lemon_tart.jpg
+  │       ├── caramel_squares.jpg
+  │       ├── raspberry_mousse.jpg
+  │       ├── chocolate_domes.jpg
+  │       ├── chocolate_hazelnut.jpg
+  │       ├── brownies.jpg
+  │       ├── paris_brest.jpg
+  │       └── reda_portrait.jpg
+  ├── package.json
+  ├── tailwind.config.ts
+  ├── next.config.js / next.config.ts
+  ├── tsconfig.json
+  └── postcss.config.js
+
+
+SECTIONS
+--------------------------------------------------------------------------------
+1. NAVBAR
+   - Fixed at top, transparent on load
+   - Becomes solid white with shadow on scroll
+   - Active link tracking per section
+   - Logo: "RG / Pastry Trainee"
+   - Links: Home, Work, About, Contact
+
+2. HERO
+   - Asymmetrical split layout (text left, image right)
+   - Large serif heading: "Building skills. One detail at a time."
+   - Short description and "View My Work" CTA
+   - Three.js 3D canvas layered behind the content (see below)
+
+3. SELECTED WORK
+   - 3 project cards in a grid
+   - Each card: 1 large image + 2 small thumbnails (mosaic layout)
+   - Project 01 — Lemon Meringue Tarts
+   - Project 02 — Chocolate Entremets
+   - Project 03 — Classic French Pastry
+   - Hover zoom on images, gold index numbers
+
+4. TECHNIQUES PRACTICED
+   - Icon row on a warm off-white (#F9F8F6) background
+   - 6 techniques with custom inline SVG icons:
+     Pâte Sucrée / Crème Pâtissière / Mousse & Inserts /
+     Chocolate Work / Glazing / Plating & Finishes
+   - Hover: icon turns gold, card background turns white
+
+5. ABOUT ME
+   - Text left, portrait photo right
+   - Personal tone bio (not CV-style)
+   - "More About Me" CTA button
+   - Photo: real portrait of Reda in chef uniform
+
+6. CONTACT
+   - Dark section (black background)
+   - Left: copy, tagline, social links
+   - Right: validated form (Name, Email, Message)
+   - Zod schema validation with error messages
+   - Success state with confirmation message
+
+7. FOOTER
+   - Minimal dark footer
+   - Copyright, social links (Instagram, LinkedIn, Email)
+   - Back to Top button with animation
+
+
+THREE.JS — HERO SCENE (HeroCanvas.tsx)
+--------------------------------------------------------------------------------
+The hero section has a live 3D canvas rendered with @react-three/fiber.
+It is loaded dynamically (ssr: false) so it never runs on the server.
+
+  GoldDust      — 180 gold (#C6A36D) particles floating upward
+                  with gentle sine-wave horizontal drift, looping infinitely
+
+  CreamDust     — 80 smaller ivory/cream particles at a different
+                  depth layer, drifting in the opposite direction
+
+  GoldRing      — Thin decorative torus ring (right side of hero),
+                  slowly rotating on all axes, with a smaller inner
+                  counter-rotating ring and subtle breathing scale
+
+  AccentRing    — Smaller accent ring on the left, gently bobbing
+
+  CameraParallax — Camera shifts smoothly with mouse position,
+                   giving the full particle field real 3D depth
+
+
+YOUR PHOTOS — HOW THEY ARE USED
+--------------------------------------------------------------------------------
+  lemon_tart.jpg          → Hero section image + Project 01 main photo
+  caramel_squares.jpg     → Project 01 small + Project 03 small
+  raspberry_mousse.jpg    → Project 01 small + Project 03 main
+  chocolate_hazelnut.jpg  → Project 02 main photo
+  chocolate_domes.jpg     → Project 02 small photo
+  brownies.jpg            → Project 02 small photo
+  paris_brest.jpg         → Project 03 small photo
+  reda_portrait.jpg       → About section portrait
+
+
+DESIGN SYSTEM
+--------------------------------------------------------------------------------
+  Colors:
+    Primary       #0D0D0D   (near-black)
+    Secondary     #F5F5F5   (off-white)
+    Accent        #C6A36D   (warm gold)
+    Background    #FFFFFF   (pure white)
+    Warm section  #F9F8F6   (cream, used in Techniques)
+    Dark section  #0D0D0D   (used in Contact + Footer)
+
+  Typography:
+    Headings      Cormorant Garamond (serif, elegant, light weight)
+    Body          Inter (sans-serif, clean, readable)
+    Labels/Nav    Inter, uppercase, letter-spacing 0.2–0.3em, 9–11px
+
+  Spacing:        8px base scale (Tailwind default)
+  Grid:           12-column, max-width 1280px, px-6 / lg:px-12
+
+
+HOW TO RUN
+--------------------------------------------------------------------------------
+  1. Open a terminal inside the pastry-portfolio folder
+  2. Run:   npm install
+  3. Run:   npm run dev
+  4. Open:  http://localhost:3000
+
+  To build for production:
+     npm run build
+     npm start
+
+  Recommended deployment: Vercel (drag & drop the folder or connect GitHub)
+
+
+================================================================================
+  Built with precision. One detail at a time.
+================================================================================
