@@ -40,21 +40,22 @@ export const projects: Project[] = [
   },
   {
     number: "02",
-    title: "TARTE TATIN REVISITÉE",
+    title: "TARTE AU CITRON MERINGUÉE MINI",
     description:
-      "Modern interpretation of the classic French upside-down apple tart, featuring caramelized apples with a glossy caramel glaze and crisp buttery pastry base.",
+      "Delicate mini lemon meringue tarts with a crisp pâte sucrée shell, sharp lemon curd filling, and a torched Italian meringue dome.",
     images: [
       {
-        src: imgSrc("/images/tarte_tatin2.jpg"),
-        alt: "Tarte Tatin revisitée individual portions with gold leaf",
-        title: "Tarte Tatin Revisitée",
+        src: imgSrc("/images/apple_tart.jpg"),
+        alt: "Mini tarte au citron meringuée with torched meringue",
+        title: "Tarte au Citron Meringuée Mini",
         caption:
-          "Modern interpretation of the classic French upside-down apple tart, featuring caramelized apples with a glossy caramel glaze and crisp buttery pastry base.",
+          "Delicate mini lemon meringue tarts with a crisp pâte sucrée shell, sharp lemon curd filling, and a torched Italian meringue dome.",
         techniques: [
-          "Caramelization",
-          "Shortcrust base",
-          "Upside-down baking method",
-          "Caramel glaze finishing",
+          "Pâte sucrée",
+          "Lemon curd",
+          "Italian meringue",
+          "Torch finishing",
+          "Mini tart assembly",
         ],
       },
     ],
