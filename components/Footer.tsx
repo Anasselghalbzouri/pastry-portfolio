@@ -13,21 +13,21 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
         {/* Copyright */}
         <p className="font-sans text-[10px] tracking-[0.15em] uppercase text-gray-600">
-          © 2024 Reda El Ghalbzouri
+          © 2026 Reda El Ghalbzouri
         </p>
 
         {/* Social links */}
         <nav className="flex items-center gap-8">
           {[
-            {label: "Number", href: "tel:+212666310794"},
-            { label: "LinkedIn", href: "https://www.linkedin.com/in/reda-el-ghalbzouri/" },
-            { label: "Email", href: "mailto:redaelghalbzouri003@gmail.com" },
-          ].map(({ label, href }) => (
+            { label: "Number", href: "tel:+212666310794", newTab: false },
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/reda-el-ghalbzouri/", newTab: true },
+            { label: "Email", href: "mailto:redaelghalbzouri003@gmail.com", newTab: false },
+          ].map(({ label, href, newTab }) => (
             <a
               key={label}
               href={href}
-              target={label !== "Email" ? "_blank" : undefined}
-              rel={label !== "Email" ? "noopener noreferrer" : undefined}
+              target={newTab ? "_blank" : undefined}
+              rel={newTab ? "noopener noreferrer" : undefined}
               className="font-sans text-[10px] tracking-[0.18em] uppercase text-gray-600 hover:text-accent transition-colors duration-300"
             >
               {label}
