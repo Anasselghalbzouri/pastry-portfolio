@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { imgSrc } from "@/lib/utils";
 
-const AUDIO_URL = "/images/Silver_on_Porcelain.mp3";
+const AUDIO_URL = imgSrc("/images/Silver_on_Porcelain.mp3");
 
 export default function AmbientPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);

@@ -7,11 +7,12 @@ interface TiltCardProps {
   children: React.ReactNode;
   className?: string;
   intensity?: number;
+  onClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }
 
-export default function TiltCard({ children, className = "", intensity = 8, onMouseEnter, onMouseLeave }: TiltCardProps) {
+export default function TiltCard({ children, className = "", intensity = 8, onClick, onMouseEnter, onMouseLeave }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [hovering, setHovering] = useState(false);
 
@@ -43,6 +44,7 @@ export default function TiltCard({ children, className = "", intensity = 8, onMo
       ref={ref}
       className={className}
       onMouseMove={handleMouseMove}
+      onClick={onClick}
       onMouseEnter={() => { setHovering(true); onMouseEnter?.(); }}
       onMouseLeave={() => { handleMouseLeave(); onMouseLeave?.(); }}
       style={{

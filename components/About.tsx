@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { imgSrc } from "@/lib/utils";
 
 export default function About() {
   return (
@@ -68,7 +69,7 @@ export default function About() {
           className="relative w-full aspect-[4/5] overflow-hidden"
         >
           <Image
-            src="/images/New_reda.png"
+            src={imgSrc("/images/New_reda.png")}
             alt="Reda El Ghalbzouri — Pastry Trainee"
             fill
             className="object-cover object-top"

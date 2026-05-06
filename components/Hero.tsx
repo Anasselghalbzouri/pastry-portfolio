@@ -4,6 +4,7 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { imgSrc } from "@/lib/utils";
 
 // Load the 3D canvas only on the client (Three.js needs browser APIs)
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), {
@@ -107,7 +108,7 @@ export default function Hero() {
           className="relative w-full aspect-[4/5] max-h-[680px] overflow-hidden"
         >
           <Image
-            src="/images/chocolate_domes.jpg"
+            src={imgSrc("/images/ferroche_cake.jpg")}
             alt="Elegant pastry creation"
             fill
             className="object-cover object-center"

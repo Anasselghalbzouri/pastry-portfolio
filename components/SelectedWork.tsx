@@ -3,10 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence, useAnimationControls } from "framer-motion";
+import { ArrowRight, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import TiltCard from "./TiltCard";
 import { projects, Project } from "@/lib/projects";
+import VideoPlayer from "./VideoPlayer";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -23,12 +24,24 @@ const panelAnim = {
   exit: { opacity: 0, y: -8, transition: { duration: 0.2 } },
 };
 
-function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
-  const [activeImg, setActiveImg] = useState(0);
-  const img = project.images[activeImg];
+function ProjectModal({
+  index,
+  onClose,
+  onPrev,
+  onNext,
+}: {
+  index: number;
+  onClose: () => void;
+  onPrev: () => void;
+  onNext: () => void;
+}) {
+  const [showVideo, setShowVideo] = useState(false);
+  const project = projects[index];
+  const img = project.images[0];
+  const hasVideo = !!project.video;
 
-  const prev = () => setActiveImg((i) => (i - 1 + project.images.length) % project.images.length);
-  const next = () => setActiveImg((i) => (i + 1) % project.images.length);
+  const handlePrev = () => { setShowVideo(false); onPrev(); };
+  const handleNext = () => { setShowVideo(false); onNext(); };
 
   return (
     <motion.div
@@ -58,44 +71,76 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           <X size={16} />
         </button>
 
-        {/* Image */}
-        <div className="relative aspect-square md:aspect-auto md:min-h-[500px] bg-stone-100 overflow-hidden">
+        {/* Media panel */}
+        <div className="relative aspect-square md:aspect-auto md:min-h-[500px] bg-black overflow-hidden">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeImg}
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0"
-            >
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-            </motion.div>
+            {showVideo && hasVideo ? (
+              <motion.div
+                key="video"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <VideoPlayer
+                  url={project.video}
+                  playing
+                  controls
+                  width="100%"
+                  height="100%"
+                  style={{ position: "absolute", top: 0, left: 0 }}
+                />
+              </motion.div>
+            ) : (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0"
+              >
+                <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+                {hasVideo && (
+                  <button
+                    type="button"
+                    aria-label="Play video"
+                    onClick={(e) => { e.stopPropagation(); setShowVideo(true); }}
+                    className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/40 transition-colors duration-300 group/play"
+                  >
+                    <span className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg transition-transform duration-300 group-hover/play:scale-110">
+                      <Play size={20} className="text-primary ml-1" fill="currentColor" />
+                    </span>
+                  </button>
+                )}
+              </motion.div>
+            )}
           </AnimatePresence>
 
-          <button type="button" aria-label="Previous image" onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 hover:bg-white flex items-center justify-center transition-colors duration-200">
-            <ChevronLeft size={16} />
-          </button>
-          <button type="button" aria-label="Next image" onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 hover:bg-white flex items-center justify-center transition-colors duration-200">
-            <ChevronRight size={16} />
-          </button>
-
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-            {project.images.map((im, i) => (
-              <button key={i} type="button" aria-label={im.alt} onClick={() => setActiveImg(i)}
-                className={`relative w-12 h-9 overflow-hidden border-2 transition-all duration-200 ${i === activeImg ? "border-accent" : "border-white/50 opacity-60 hover:opacity-100"}`}>
-                <Image src={im.src} alt={im.alt} fill className="object-cover" sizes="48px" />
+          {!showVideo && (
+            <>
+              <button type="button" aria-label="Previous project" onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 hover:bg-white flex items-center justify-center transition-colors duration-200 z-10">
+                <ChevronLeft size={16} />
               </button>
-            ))}
-          </div>
+              <button type="button" aria-label="Next project" onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/80 hover:bg-white flex items-center justify-center transition-colors duration-200 z-10">
+                <ChevronRight size={16} />
+              </button>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+                {projects.map((_, i) => (
+                  <span key={i} className={`block w-1.5 h-1.5 rounded-full transition-all duration-200 ${i === index ? "bg-accent scale-125" : "bg-white/60"}`} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
-        {/* Right — per-image info */}
+        {/* Right — info */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={activeImg}
+            key={index}
             variants={panelAnim}
             initial="hidden"
             animate="visible"
@@ -104,7 +149,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           >
             <div>
               <p className="font-sans text-[11px] text-accent tracking-[0.2em] font-medium mb-1">
-                {project.number} — {activeImg + 1} / {project.images.length}
+                {project.number} — {index + 1} / {projects.length}
               </p>
               <h2 className="font-serif text-2xl md:text-3xl font-light text-primary leading-tight">
                 {img.title}
@@ -128,12 +173,34 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               </div>
             </div>
 
+            {/* Video toggle thumbnail */}
+            {hasVideo && (
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  aria-label="View photo"
+                  onClick={() => setShowVideo(false)}
+                  className={`relative w-14 h-11 overflow-hidden border-2 transition-colors duration-200 ${!showVideo ? "border-accent" : "border-transparent"}`}
+                >
+                  <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="56px" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Play video"
+                  onClick={() => setShowVideo(true)}
+                  className={`w-14 h-11 flex items-center justify-center border-2 transition-colors duration-200 bg-stone-100 hover:bg-stone-200 ${showVideo ? "border-accent" : "border-transparent"}`}
+                >
+                  <Play size={14} className="text-primary" fill="currentColor" />
+                </button>
+              </div>
+            )}
+
             <div className="flex items-center gap-4 mt-auto pt-4 border-t border-stone-100">
-              <button type="button" onClick={prev}
+              <button type="button" onClick={handlePrev}
                 className="flex items-center gap-1.5 font-sans text-[10px] tracking-[0.15em] uppercase text-gray-400 hover:text-primary transition-colors duration-200">
                 <ChevronLeft size={12} /> Prev
               </button>
-              <button type="button" onClick={next}
+              <button type="button" onClick={handleNext}
                 className="flex items-center gap-1.5 font-sans text-[10px] tracking-[0.15em] uppercase text-gray-400 hover:text-primary transition-colors duration-200">
                 Next <ChevronRight size={12} />
               </button>
@@ -154,45 +221,79 @@ function ProjectCard({ project, index, onClick }: { project: Project; index: num
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
     >
-      <TiltCard className="group flex flex-col gap-5 cursor-pointer" intensity={6}>
-        <div className="grid grid-cols-2 gap-1.5 aspect-[4/3] overflow-hidden" onClick={onClick}>
-          <div className="relative overflow-hidden row-span-2">
-            <Image src={project.images[0].src} alt={project.images[0].alt} fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 50vw, 18vw" />
-          </div>
-          <div className="relative overflow-hidden">
-            <Image src={(project.images[1] ?? project.images[0]).src} alt={(project.images[1] ?? project.images[0]).alt} fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 25vw, 9vw" />
-          </div>
-          <div className="relative overflow-hidden">
-            <Image src={(project.images[2] ?? project.images[0]).src} alt={(project.images[2] ?? project.images[0]).alt} fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 25vw, 9vw" />
+      <TiltCard className="group flex flex-col gap-4 cursor-pointer" intensity={6} onClick={onClick}>
+        {/* Single full image per card */}
+        <div className="relative aspect-[4/5] overflow-hidden">
+          <Image
+            src={project.images[0].src}
+            alt={project.images[0].alt}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-300 flex items-center justify-center">
+            <span className="font-sans text-[10px] tracking-[0.25em] uppercase text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              View Project
+            </span>
           </div>
         </div>
 
-        <div className="flex flex-col gap-3">
+        {/* Number + title only, no description */}
+        <div className="flex items-baseline justify-between px-1">
           <p className="font-sans text-[11px] text-accent tracking-wider font-medium">{project.number}</p>
-          <h3 className="font-sans text-sm font-semibold tracking-[0.12em] text-primary">{project.title}</h3>
-          <p className="font-sans text-[13px] font-light leading-relaxed text-gray-500">{project.description}</p>
-          <button type="button" onClick={onClick}
-            className="flex items-center gap-2 font-sans text-[10px] tracking-[0.18em] uppercase text-primary hover:text-accent transition-colors duration-300 group/link w-fit">
-            View Project
-            <ArrowRight size={11} className="transition-transform duration-300 group-hover/link:translate-x-1" />
-          </button>
+          <h3 className="font-sans text-xs font-semibold tracking-[0.12em] text-primary uppercase">{project.title}</h3>
+          <ArrowRight size={11} className="text-primary transition-transform duration-300 group-hover:translate-x-1 shrink-0" />
         </div>
       </TiltCard>
     </motion.div>
   );
 }
 
-export default function SelectedWork() {
-  const [selected, setSelected] = useState<Project | null>(null);
+// each card is w-[300px], gap-5 = 20px → strip = 8 × 320 = 2560px
+const STRIP_PX = projects.length * 320;
+
+function InfiniteTrack({ onSelect }: { onSelect: (p: Project) => void }) {
+  const controls = useAnimationControls();
+
+  const start = () =>
+    controls.start({
+      x: -STRIP_PX,
+      transition: { duration: projects.length * 4, ease: "linear", repeat: Infinity, repeatType: "loop" },
+    });
 
   return (
-    <section id="work" className="bg-white py-24 lg:py-32">
+    <div
+      className="overflow-hidden"
+      onMouseEnter={() => controls.stop()}
+      onMouseLeave={start}
+    >
+      <motion.div
+        className="flex gap-5"
+        animate={controls}
+        initial={{ x: 0 }}
+        onViewportEnter={start}
+        viewport={{ once: true }}
+      >
+        {[...projects, ...projects].map((project, index) => (
+          <div key={`${project.number}-${index}`} className="w-[300px] shrink-0">
+            <ProjectCard project={project} index={index % projects.length} onClick={() => onSelect(project)} />
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  );
+}
+
+export default function SelectedWork() {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const openModal = (i: number) => setSelectedIndex(i);
+  const closeModal = () => setSelectedIndex(null);
+  const prevProject = () => setSelectedIndex((i) => i === null ? null : (i - 1 + projects.length) % projects.length);
+  const nextProject = () => setSelectedIndex((i) => i === null ? null : (i + 1) % projects.length);
+
+  return (
+    <section id="work" className="bg-white py-24 lg:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between mb-14">
           <motion.h2
@@ -214,21 +315,24 @@ export default function SelectedWork() {
               href="/work"
               className="flex items-center gap-2 font-sans text-[10px] tracking-[0.2em] uppercase text-gray-400 hover:text-primary transition-colors duration-300 group"
             >
-              View All Projects
+              View All
               <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6">
-          {projects.slice(0, 3).map((project, index) => (
-            <ProjectCard key={project.number} project={project} index={index} onClick={() => setSelected(project)} />
-          ))}
-        </div>
       </div>
 
+      <InfiniteTrack onSelect={(p) => openModal(projects.indexOf(p))} />
+
       <AnimatePresence>
-        {selected && <ProjectModal project={selected} onClose={() => setSelected(null)} />}
+        {selectedIndex !== null && (
+          <ProjectModal
+            index={selectedIndex}
+            onClose={closeModal}
+            onPrev={prevProject}
+            onNext={nextProject}
+          />
+        )}
       </AnimatePresence>
     </section>
   );
