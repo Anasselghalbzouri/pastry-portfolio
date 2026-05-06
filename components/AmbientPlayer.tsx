@@ -3,14 +3,12 @@
 import { useEffect, useRef } from "react";
 import { imgSrc } from "@/lib/utils";
 
-const AUDIO_URL = imgSrc("/images/Silver_on_Porcelain.mp3");
-
 export default function AmbientPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const started = useRef(false);
 
   useEffect(() => {
-    const audio = new Audio(AUDIO_URL);
+    const audio = new Audio(imgSrc("/images/Silver_on_Porcelain.mp3"));
     audio.volume = 0.12;
     audio.loop = true;
     audioRef.current = audio;
