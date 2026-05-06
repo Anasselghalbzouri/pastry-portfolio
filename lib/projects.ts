@@ -66,7 +66,7 @@ export const projects: Project[] = [
       "Layered chocolate and hazelnut praline cake with a crunchy feuilletine base, rich ganache, and a smooth chocolate coating.",
     images: [
       {
-        src: imgSrc("/images/ferroche_cake.jpg"),
+        src: imgSrc("/images/swiss_roll.jpg"),
         alt: "Ferroche cake with hazelnut praline layers",
         title: "Ferroche Cake",
         caption:
@@ -226,22 +226,22 @@ export const projects: Project[] = [
   },
   {
     number: "10",
-    title: "PANNA COTTA",
+    title: "SWISS ROLL",
     description:
-      "Silky Italian panna cotta set to the perfect wobble, unmoulded clean and finished with a glossy fruit coulis — a study in texture, restraint, and precision.",
+      "Light and airy sponge cake rolled around a smooth cream filling, finished with a clean spiral and a dusting of powdered sugar.",
     video: imgSrc("/images/panna.mp4"),
     images: [
       {
         src: imgSrc("/images/plating_finish.jpg"),
-        alt: "Panna cotta with fruit coulis finish",
-        title: "Panna Cotta",
+        alt: "Swiss roll with cream filling spiral",
+        title: "Swiss Roll",
         caption:
-          "Silky Italian panna cotta set to the perfect wobble, unmoulded clean and finished with a glossy fruit coulis.",
+          "Light and airy sponge cake rolled around a smooth cream filling, finished with a clean spiral and a dusting of powdered sugar.",
         techniques: [
-          "Gelatin setting & ratio control",
-          "Unmoulding technique",
-          "Coulis finishing",
-          "Texture precision",
+          "Sponge cake (génoise)",
+          "Rolling technique",
+          "Whipped cream filling",
+          "Precision rolling & shaping",
           "Plating & finishes",
         ],
       },
