@@ -61,21 +61,22 @@ export const projects: Project[] = [
   },
   {
     number: "03",
-    title: "SWISS ROLL",
+    title: "FERROCHE CAKE",
     description:
-      "Light and airy sponge cake rolled with a smooth cream filling, finished with a clean spiral presentation.",
+      "Layered chocolate and hazelnut praline cake with a crunchy feuilletine base, rich ganache, and a smooth chocolate coating.",
     images: [
       {
-        src: imgSrc("/images/swiss_roll.jpg"),
-        alt: "Swiss roll with cream filling",
-        title: "Swiss Roll",
+        src: imgSrc("/images/ferroche_cake.jpg"),
+        alt: "Ferroche cake with hazelnut praline layers",
+        title: "Ferroche Cake",
         caption:
-          "Light and airy sponge cake rolled with a smooth cream filling, finished with a clean spiral presentation.",
+          "Layered chocolate and hazelnut praline cake with a crunchy feuilletine base, rich ganache, and a smooth chocolate coating.",
         techniques: [
-          "Sponge cake (génoise)",
-          "Rolling technique",
-          "Whipped cream filling",
-          "Precision rolling & shaping",
+          "Hazelnut praline",
+          "Feuilletine crunch base",
+          "Chocolate ganache",
+          "Layered assembly",
+          "Chocolate coating",
         ],
       },
     ],
@@ -159,22 +160,22 @@ export const projects: Project[] = [
   },
   {
     number: "07",
-    title: "PETIT FOURS COLLECTION",
+    title: "PARIS–BREST",
     description:
-      "An assorted collection of refined bite-sized pastries showcasing different textures and techniques, from airy choux to rich chocolate and buttery sablé bases.",
+      "Classic French choux pastry ring filled with a light hazelnut praline mousseline cream, dusted with powdered sugar and toasted almonds.",
     images: [
       {
         src: imgSrc("/images/petit_fours.jpg"),
-        alt: "Petit fours collection — choux, brownies, mousse, sablé",
-        title: "Petit Fours Collection",
+        alt: "Paris–Brest choux ring with praline mousseline cream",
+        title: "Paris–Brest",
         caption:
-          "Choux pastry · Brownies · Chocolate mousse · Sablé Breton — an assorted collection of refined bite-sized pastries showcasing different textures and techniques.",
+          "Classic French choux pastry ring filled with a light hazelnut praline mousseline cream, dusted with powdered sugar and toasted almonds.",
         techniques: [
-          "Choux pastry",
-          "Chocolate mousse",
-          "Sablé Breton",
-          "Brownie production",
-          "Small-format finishing & glazing",
+          "Choux pastry (pâte à choux)",
+          "Praline mousseline cream",
+          "Piping & shaping",
+          "Toasted almond finish",
+          "Powdered sugar dusting",
         ],
       },
     ],
