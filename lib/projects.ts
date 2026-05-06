@@ -93,7 +93,7 @@ export const projects: Project[] = [
         techniques: ["Choux pastry", "Praline mousseline", "Piping", "Lamination"],
       },
       {
-        src: "/images/WhatsApp Image 2026-05-04 at 16.13.09.jpeg",
+        src: "/images/choux_detail.jpg",
         alt: "Pastry detail",
         title: "Choux Detail",
         caption:
@@ -101,7 +101,7 @@ export const projects: Project[] = [
         techniques: ["Choux baking", "Shell structure", "Cream filling"],
       },
       {
-        src: "/images/WhatsApp Image 2026-05-04 at 16.14.09.jpeg",
+        src: "/images/plating_finish.jpg",
         alt: "Pastry close-up",
         title: "Plating & Finish",
         caption:

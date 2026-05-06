@@ -23,7 +23,7 @@ export default function VideoReel() {
       {/* Full-width video */}
       <video
         ref={videoRef}
-        src="/images/panna.mp4"
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/panna.mp4`}
         muted
         loop
         playsInline
