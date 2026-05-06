@@ -162,12 +162,12 @@ function ProjectCard({ project, index, onClick }: { project: Project; index: num
               sizes="(max-width: 768px) 50vw, 18vw" />
           </div>
           <div className="relative overflow-hidden">
-            <Image src={project.images[1].src} alt={project.images[1].alt} fill
+            <Image src={(project.images[1] ?? project.images[0]).src} alt={(project.images[1] ?? project.images[0]).alt} fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 25vw, 9vw" />
           </div>
           <div className="relative overflow-hidden">
-            <Image src={project.images[2].src} alt={project.images[2].alt} fill
+            <Image src={(project.images[2] ?? project.images[0]).src} alt={(project.images[2] ?? project.images[0]).alt} fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
               sizes="(max-width: 768px) 25vw, 9vw" />
           </div>
@@ -221,7 +221,7 @@ export default function SelectedWork() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-6">
-          {projects.map((project, index) => (
+          {projects.slice(0, 3).map((project, index) => (
             <ProjectCard key={project.number} project={project} index={index} onClick={() => setSelected(project)} />
           ))}
         </div>
