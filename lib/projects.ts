@@ -110,4 +110,132 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    number: "04",
+    title: "STRAWBERRY CHEESECAKE",
+    description:
+      "Creamy baked cheesecake flavored with fresh strawberries on a buttery biscuit base, finished with a smooth strawberry glaze and fresh fruit accents.",
+    images: [
+      {
+        src: "/images/strawberry_cheesecake.jpg",
+        alt: "Strawberry cheesecake",
+        title: "Strawberry Cheesecake",
+        caption:
+          "Creamy baked cheesecake flavored with fresh strawberries on a buttery biscuit base, finished with a smooth strawberry glaze and fresh fruit accents.",
+        techniques: ["Biscuit base (crushed & pressed)", "Baked cheesecake", "Strawberry coulis / insert", "Glazing & finishing"],
+      },
+    ],
+  },
+  {
+    number: "05",
+    title: "TARTE TATIN REVISITÉE",
+    description:
+      "Modern interpretation of the classic French upside-down apple tart, featuring caramelized apples with a glossy caramel glaze and crisp buttery pastry base.",
+    images: [
+      {
+        src: "/images/tarte_tatin.jpg",
+        alt: "Tarte Tatin revisitée",
+        title: "Tarte Tatin Revisitée",
+        caption:
+          "Modern interpretation of the classic French upside-down apple tart, featuring caramelized apples with a glossy caramel glaze and crisp buttery pastry base.",
+        techniques: ["Caramelization", "Shortcrust base", "Upside-down baking method", "Caramel glaze finishing"],
+      },
+    ],
+  },
+  {
+    number: "06",
+    title: "SWISS ROLL",
+    description:
+      "Light and airy sponge cake rolled with a smooth cream filling, finished with a clean spiral presentation.",
+    images: [
+      {
+        src: "/images/swiss_roll.jpg",
+        alt: "Swiss roll",
+        title: "Swiss Roll",
+        caption:
+          "Light and airy sponge cake rolled with a smooth cream filling, finished with a clean spiral presentation.",
+        techniques: ["Sponge cake (génoise)", "Rolling technique", "Whipped cream filling", "Precision rolling & shaping"],
+      },
+    ],
+  },
+  {
+    number: "07",
+    title: "FERROCHE CAKE",
+    description:
+      "Chocolate-based cake inspired by hazelnut praline flavors with a crunchy texture and rich cocoa profile.",
+    images: [
+      {
+        src: "/images/ferroche_cake.jpg",
+        alt: "Ferroche cake",
+        title: "Ferroche Cake",
+        caption:
+          "Chocolate-based cake inspired by hazelnut praline flavors with a crunchy texture and rich cocoa profile.",
+        techniques: ["Chocolate sponge", "Hazelnut praline", "Crunch layers", "Ganache integration"],
+      },
+    ],
+  },
+  {
+    number: "08",
+    title: "CHOCOLATE GANACHE BROWNIES",
+    description:
+      "Dense fudgy brownies enriched with dark chocolate ganache for an intense and rich chocolate experience.",
+    images: [
+      {
+        src: "/images/ganache_brownies.jpg",
+        alt: "Chocolate ganache brownies",
+        title: "Chocolate Ganache Brownies",
+        caption:
+          "Dense fudgy brownies enriched with dark chocolate ganache for an intense and rich chocolate experience.",
+        techniques: ["Fudgy brownie base", "Chocolate ganache", "Controlled baking", "Texture balance (soft & dense)"],
+      },
+    ],
+  },
+  {
+    number: "09",
+    title: "APPLE TART",
+    description:
+      "Classic French apple tart with thinly sliced apples arranged over a crisp pastry shell and glazed for shine.",
+    images: [
+      {
+        src: "/images/apple_tart.jpg",
+        alt: "Apple tart",
+        title: "Apple Tart",
+        caption:
+          "Classic French apple tart with thinly sliced apples arranged over a crisp pastry shell and glazed for shine.",
+        techniques: ["Shortcrust pastry (pâte sucrée)", "Apple slicing & arrangement", "Baking control", "Apricot glaze finishing"],
+      },
+    ],
+  },
+  {
+    number: "10",
+    title: "PETIT FOURS COLLECTION",
+    description:
+      "An assorted collection of refined bite-sized pastries showcasing different textures and techniques, from airy choux to rich chocolate and buttery sablé bases.",
+    images: [
+      {
+        src: "/images/petit_fours.jpg",
+        alt: "Petit fours collection",
+        title: "Petit Fours Collection",
+        caption:
+          "An assorted collection of refined bite-sized pastries — choux pastry, brownies, chocolate mousse and sablé Breton — showcasing different textures and techniques.",
+        techniques: ["Choux pastry", "Chocolate mousse", "Sablé Breton", "Brownie production", "Small-format finishing & glazing"],
+      },
+    ],
+  },
+  {
+    number: "11",
+    title: "ENTREMET FRAMBOISE",
+    description:
+      "Elegant raspberry entremet composed of soft mousse layers with a fruity raspberry insert, set on a delicate biscuit base and finished with a smooth glaze.",
+    images: [
+      {
+        src: "/images/entremet_framboise.jpg",
+        alt: "Entremet framboise",
+        title: "Entremet Framboise",
+        caption:
+          "Elegant raspberry entremet composed of soft mousse layers with a fruity raspberry insert, set on a delicate biscuit base and finished with a smooth mirror glaze.",
+        techniques: ["Raspberry mousse", "Fruit insert (coulis/gel)", "Biscuit base", "Mirror glaze", "Layered entremet assembly"],
+      },
+    ],
+  },
 ];
