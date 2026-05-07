@@ -50,7 +50,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="#home" className="flex flex-col leading-tight group">
           <span className="font-serif text-lg font-medium tracking-wider text-primary transition-opacity group-hover:opacity-70">
-            RG
+            RE
           </span>
           <span
             className="font-sans text-[9px] font-medium tracking-[0.2em] text-gray-500 uppercase"

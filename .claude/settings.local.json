@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://anasselghalbzouri.github.io/pastry-portfolio/work)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://anasselghalbzouri.github.io/pastry-portfolio/images/panna.mp4)"
+    ]
+  }
+}
