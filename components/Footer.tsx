@@ -2,8 +2,10 @@
 
 import { motion } from "framer-motion";
 import { ArrowUp } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -42,7 +44,7 @@ export default function Footer() {
           className="flex items-center gap-2 font-sans text-[10px] tracking-[0.18em] uppercase text-gray-600 hover:text-accent transition-colors duration-300"
         >
           <ArrowUp size={12} />
-          Back to Top
+          {t.footer.backToTop}
         </motion.button>
       </div>
     </footer>

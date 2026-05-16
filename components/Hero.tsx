@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { imgSrc } from "@/lib/utils";
+import { useLanguage } from "@/lib/LanguageContext";
 
 // Load the 3D canvas only on the client (Three.js needs browser APIs)
 const HeroCanvas = dynamic(() => import("./HeroCanvas"), {
@@ -22,6 +23,7 @@ const fadeUp = {
 };
 
 export default function Hero() {
+  const { t } = useLanguage();
   return (
     <section
       id="home"
@@ -41,7 +43,7 @@ export default function Hero() {
             animate="visible"
             className="font-sans text-[11px] tracking-[0.25em] uppercase text-gray-400"
           >
-            Discipline. Precision. Repetition.
+            {t.hero.tagline}
           </motion.p>
 
           {/* Heading */}
@@ -52,10 +54,10 @@ export default function Hero() {
             animate="visible"
             className="font-serif text-[clamp(2.8rem,6vw,4.5rem)] font-light leading-[1.05] text-primary"
           >
-            Building skills.
+            {t.hero.heading1}
             <br />
-            One detail{" "}
-            <span className="italic text-accent">at a time.</span>
+            {t.hero.heading2}{" "}
+            <span className="italic text-accent">{t.hero.heading3}</span>
           </motion.h1>
 
           {/* Gold divider */}
@@ -75,9 +77,7 @@ export default function Hero() {
             animate="visible"
             className="font-sans text-sm font-light leading-relaxed text-gray-600 max-w-sm"
           >
-            I am a pastry trainee seeking stage opportunities in Michelin-level
-            kitchens to learn, grow and contribute with dedication and
-            consistency.
+            {t.hero.description}
           </motion.p>
 
           {/* CTA */}
@@ -91,7 +91,7 @@ export default function Hero() {
               href="#work"
               className="inline-flex items-center gap-3 bg-primary text-white font-sans text-[11px] tracking-[0.2em] uppercase px-7 py-4 hover:bg-accent transition-colors duration-300 group"
             >
-              View My Work
+              {t.hero.cta}
               <ArrowRight
                 size={14}
                 className="transition-transform duration-300 group-hover:translate-x-1"
@@ -127,7 +127,7 @@ export default function Hero() {
           className="font-sans text-[9px] tracking-[0.3em] text-gray-300 uppercase"
           style={{ writingMode: "vertical-rl" }}
         >
-          Scroll
+          {t.hero.scroll}
         </p>
       </div>
     </section>

@@ -4,8 +4,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { imgSrc } from "@/lib/utils";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function About() {
+  const { t } = useLanguage();
   return (
     <section id="about" className="bg-white py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -18,7 +20,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="font-sans text-[11px] tracking-[0.25em] uppercase text-primary font-medium mb-4">
-              About Me
+              {t.about.label}
             </h2>
             <div className="w-8 h-[2px] bg-accent" />
           </motion.div>
@@ -31,13 +33,7 @@ export default function About() {
             className="flex flex-col gap-4"
           >
             <p className="font-sans text-[15px] font-light leading-[1.85] text-gray-600">
-              My name is Reda El Ghalbzouri, and I am a passionate pastry trainee with a strong drive to grow and evolve within the world of pastry.
-              My journey started from curiosity and love for detail, and it quickly turned into a clear ambition to become a professional chef who masters the fundamentals through repetition, discipline, and precision.
-             <br />
-              I am constantly learning, pushing myself through practice, and building strong technical foundations step by step.
-              My goal is to join a Michelin-level kitchen where I can experience real service, high standards, and true culinary excellence.
-              <br />
-              I adapt quickly, stay focused under pressure, and bring consistency, energy, and dedication to every task I take on.
+              {t.about.body}
             </p>
           </motion.div>
 
@@ -51,7 +47,7 @@ export default function About() {
               href="#contact"
               className="inline-flex items-center gap-3 bg-primary text-white font-sans text-[11px] tracking-[0.2em] uppercase px-7 py-4 hover:bg-accent transition-colors duration-300 group"
             >
-              More About Me
+              {t.about.cta}
               <ArrowRight
                 size={14}
                 className="transition-transform duration-300 group-hover:translate-x-1"

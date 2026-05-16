@@ -2,8 +2,10 @@
 
 import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function VideoReel() {
+  const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const inView = useInView(sectionRef, { amount: 0.8});
@@ -42,7 +44,7 @@ export default function VideoReel() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center"
       >
         <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-white/50 mb-3">
-          In the kitchen
+          {t.videoReel.label}
         </p>
         <h2 className="font-serif text-[clamp(1.6rem,4vw,3rem)] font-light text-white leading-tight">
            Panna cotta aux fraises

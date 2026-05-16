@@ -8,6 +8,7 @@ import { ArrowRight, X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import TiltCard from "./TiltCard";
 import { projects, Project } from "@/lib/projects";
 import VideoPlayer from "./VideoPlayer";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -285,6 +286,7 @@ function InfiniteTrack({ onSelect }: { onSelect: (p: Project) => void }) {
 }
 
 export default function SelectedWork() {
+  const { t } = useLanguage();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const openModal = (i: number) => setSelectedIndex(i);
@@ -303,7 +305,7 @@ export default function SelectedWork() {
             transition={{ duration: 0.6 }}
             className="font-sans text-[11px] tracking-[0.25em] uppercase text-primary font-medium"
           >
-            Selected Work
+            {t.work.label}
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -315,7 +317,7 @@ export default function SelectedWork() {
               href="/work"
               className="flex items-center gap-2 font-sans text-[10px] tracking-[0.2em] uppercase text-gray-400 hover:text-primary transition-colors duration-300 group"
             >
-              View All
+              {t.work.viewAll}
               <ArrowRight size={12} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
