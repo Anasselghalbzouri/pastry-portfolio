@@ -6,7 +6,7 @@ import ChatWidget from "@/components/ChatWidget";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "Reda El Ghalbzouri - Pastry Portfolio",
+  title: "Reda El Ghalbzouri Pastry Portfolio",
   description:
     "Pastry trainee seeking stage opportunities in Michelin-level kitchens. Discipline. Precision. Repetition.",
   keywords: ["pastry", "chef", "trainee", "Michelin", "entremets", "pâtisserie"],
