@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Pastry trainee seeking stage opportunities in Michelin-level kitchens. Discipline. Precision. Repetition.",
   keywords: ["pastry", "chef", "trainee", "Michelin", "entremets", "pâtisserie"],
   openGraph: {
-    title: "Reda El Ghalbzouri — Pastry Trainee",
+    title: "Reda El Ghalbzouri Pastry Portfolio",
     description:
       "Building skills. One detail at a time. Seeking stage opportunities in Michelin-level kitchens.",
     type: "website",
